@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../features/blogs/blogSlice";
+import { Table } from "reactstrap";
+import { Link } from "react-router";
+
 
 const Bloglist = () => {
   const dispatch = useDispatch();
@@ -13,19 +16,36 @@ const Bloglist = () => {
   if (loading) return <p>Loading...</p>;
   console.log(list);
   return (
-    <div>
-      {list.map((blog) => (
-        <div key={blog.id} style={{ marginBottom: 20 }}>
-          <h3>{blog.title}</h3>
-          <p>{blog.content}</p>
-          <small>Category: {blog?.category}</small>
-          <br />
-          <small>
-            Tags: {blog.tags?.map((t) => t).join(", ")}
-          </small>
-        </div>
-      ))}
-    </div>
+    <>
+      <Table responsive>
+        <thead>
+          <tr>
+            <th>
+              #
+            </th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Category</th>
+            <th>Published</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {
+          list.map((blog,index)=>(
+            <tr key={blog.id}>
+              <td></td>
+              <td>{blog.title}</td>
+              <td>{blog.content}</td>
+              <td>{blog?.category}</td>
+              <td></td>
+              <td><Link>Edit</Link><Link>Delete</Link></td>
+            </tr>
+          ))
+        }
+        </tbody>
+      </Table>
+    </>
   );
 };
 
