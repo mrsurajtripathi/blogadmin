@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createBlog } from "../features/blogs/blogSlice";
 import { fetchCategories } from "../features/categories/categorySlice";
 import { fetchTags } from "../features/tags/tagSlice";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 export const Blogform = () => {
     const dispatch = useDispatch();
@@ -29,23 +30,45 @@ export const Blogform = () => {
         <>
             <section className="py-5">
                 <div className="container px-5">
-                    <div className="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                    <div className="bg-light rounded-3 py-5 px-2 px-md-2 mb-2">
                         <div className="row gx-5 justify-content-center">
-                            <div className="col-lg-8 col-xl-6">
-                                <form onSubmit={submitHandler}>
+                            <div className="col-lg-12 col-xl-10">
+                                <Form onSubmit={submitHandler}>
+                                    <FormGroup floating>
+                                        <Input name="title" placeholder="Title" type="text" onChange={(e) => setForm({ ...form, title: e.target.value })} />
+                                        <Label>Title</Label>
+                                    </FormGroup>
+                                    <FormGroup floating>
+                                        <Input id="exampleEmail" name="content" placeholder="Content" type="textarea" onChange={(e) => setForm({ ...form, content: e.target.value })} />
+                                        <Label for="exampleEmail">Content</Label>
+                                    </FormGroup>
+                                    <FormGroup floating>
+                                        <Input id="exampleEmail" name="category" placeholder="Category" type="select" onChange={(e) => setForm({ ...form, categoryId: e.target.value })}>
+                                            <option>Select Category</option>
+                                            {categories.map((c) => (
+                                                <option key={c.id} value={c.id}>{c.name}</option>
+                                            ))}
+                                        </Input>
+                                        <Label for="exampleEmail">Category</Label>
+                                    </FormGroup>
+                                    <FormGroup floating>
+                                        <Input id="exampleEmail" name="tags" placeholder="Tags" multiple type="select" onChange={(e) =>
+                                            setForm({
+                                                ...form,
+                                                tags: [...e.target.selectedOptions].map((o) => o.value),
+                                            })
+                                        }>
+                                            <option>Select Tags</option>
+                                            {tags.map((c) => (
+                                                <option key={c.id} value={c.id}>{c.name}</option>
+                                            ))}
+                                        </Input>
+                                        <Label for="exampleEmail">Tags</Label>
+                                    </FormGroup>
+                                    <Button type="submit" className="btn btn-primary">Create Blog</Button>
+                                    {/* 
                                     <div className="form-floating mb-3">
-                                        <input className="form-control"
-                                            placeholder="Title"
-                                            onChange={(e) => setForm({ ...form, title: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="form-floating mb-3">
-                                        <textarea className="form-control"
-                                            placeholder="Content"
-                                            onChange={(e) => setForm({ ...form, content: e.target.value })}
-                                        />
-                                    </div>
-                                    <div className="form-floating mb-3">
+                                    <label for="cat">Category</label>
                                         <select className="form-control"
                                             onChange={(e) => setForm({ ...form, categoryId: e.target.value })}
                                         >
@@ -56,6 +79,7 @@ export const Blogform = () => {
                                         </select>
                                     </div>
                                     <div className="form-floating mb-3">
+                                    <label for="cat">Tags</label>
                                         <select
                                             className="form-control"
                                             multiple
@@ -71,8 +95,8 @@ export const Blogform = () => {
                                             ))}
                                         </select>
                                     </div>
-                                    <button type="submit" className="btn btn-primary">Create Blog</button>
-                                </form>
+                                    <button type="submit" className="btn btn-primary">Create Blog</button> */}
+                                </Form>
                             </div>
                         </div>
                     </div>
