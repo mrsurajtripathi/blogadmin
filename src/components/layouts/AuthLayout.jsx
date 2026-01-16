@@ -1,10 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router'
-import { Navbar } from '../Navbar'
+import { Navbars } from '../Navbars'
 export const AuthLayout = () => {
   return (
     <>
-        <Navbar/>
+        <Navbars/>
         <Outlet/>
     </>
   )

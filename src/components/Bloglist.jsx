@@ -14,7 +14,6 @@ const Bloglist = () => {
   }, [dispatch]);
 
   if (loading) return <p>Loading...</p>;
-  console.log(list);
   return (
     <>
       <Table responsive>
