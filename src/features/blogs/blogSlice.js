@@ -31,7 +31,10 @@ const blogSlice = createSlice({
       .addCase(fetchBlogs.fulfilled, (state, action) => {
         state.list = action.payload;
         state.loading = false;
-      })
+      }) 
+      .addCase(createBlog.pending,(state)=>{
+        state.loading=true;
+      })   
       .addCase(createBlog.fulfilled, (state, action) => {
         state.list.unshift(action.payload);
       });

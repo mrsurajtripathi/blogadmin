@@ -28,6 +28,7 @@ export const Blogform = () => {
 
     return (
         <>
+            {loading && <div>....</div>}
             <section className="py-5">
                 <div className="container px-5">
                     <div className="bg-light rounded-3 py-5 px-2 px-md-2 mb-2">
